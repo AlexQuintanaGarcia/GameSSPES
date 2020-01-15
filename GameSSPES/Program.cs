@@ -10,7 +10,7 @@ namespace GameSSPES
 
             Console.WriteLine("Die Regeln: \nSchere schneidet Papier, \nPapier bedeckt Stein, \nStein zerquetscht Echse, \nEchse vergiftet Spock, \nSpock zertrümmert Schere, \nSchere köpft Echse, \nEchse frisst Papier, \nPapier widerlegt Spock, \nSpock verdampft Stein. \nUnd wie gewöhnlich – Stein schleift Schere. \n ");
 
-            Console.Write("Bitte schreibe deine Name: ");
+            Console.Write("Bitte schreibe deinen Name: ");
 
             string userName = Console.ReadLine();
             Console.WriteLine();
@@ -29,7 +29,7 @@ namespace GameSSPES
                     Console.WriteLine();
 
                     Random rnd = new Random();
-                    randomInt = rnd.Next(1, 6);
+                    randomInt = rnd.Next(1,6);
 
                     switch (randomInt)
                     {
@@ -37,37 +37,32 @@ namespace GameSSPES
                             computerChoise = "Schere";
                             if (userChoice == "Schere")
                             {
-                                Console.WriteLine("Computer hat Schere\n");
-                                Console.WriteLine("Unentschieden, nochmal\n");
+                                Draw(computerChoise);
                                 tryAgain = true;
                             }
                             else if (userChoice == "Stein")
                             {
-                                Console.WriteLine("Computer hat Schere\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Papier")
                             {
-                                Console.WriteLine("Computer hat Schere\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Echse")
                             {
-                                Console.WriteLine("Computer hat Schere\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Spock")
                             {
-                                Console.WriteLine("Computer hat Schere\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else
                             {
-                                Console.WriteLine("Ungültige Antwort\n");
+                                FalseAnswer();
                             }
 
                             break;
@@ -75,149 +70,128 @@ namespace GameSSPES
                             computerChoise = "Stein";
                             if (userChoice == "Schere")
                             {
-                                Console.WriteLine("Computer hat Stein\n");
-                                Console.WriteLine("Du hast verloren:(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Stein")
                             {
-                                Console.WriteLine("Computer hat Stein\n");
-                                Console.WriteLine("Unentschieden, nochmal\n");
+                                Draw(computerChoise);
                                 tryAgain = true;
                             }
                             else if (userChoice == "Papier")
                             {
-                                Console.WriteLine("Computer hat Stein\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Echse")
                             {
-                                Console.WriteLine("Computer hat Stein\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Spock")
                             {
-                                Console.WriteLine("Computer hat Stein\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else
                             {
-                                Console.WriteLine("Ungültige Antwort\n");
+                                FalseAnswer();
                             }
                             break;
                         case 3:
                             computerChoise = "Papier";
                             if (userChoice == "Schere")
                             {
-                                Console.WriteLine("Computer hat Papier\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Stein")
                             {
-                                Console.WriteLine("Computer hat Papier\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Papier")
                             {
-                                Console.WriteLine("Computer hat Papier\n");
-                                Console.WriteLine("Unentschieden, nochmal\n");
+                                Draw(computerChoise);
                                 tryAgain = true;
                             }
                             else if (userChoice == "Echse")
                             {
-                                Console.WriteLine("Computer hat Papier\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Spock")
                             {
-                                Console.WriteLine("Computer hat Papier\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else
                             {
-                                Console.WriteLine("Ungültige Antwort\n");
+                                FalseAnswer();
                             }
                             break;
                         case 4:
                             computerChoise = "Echse";
                             if (userChoice == "Schere")
                             {
-                                Console.WriteLine("Computer hat Echse\n");
-                                Console.WriteLine("Du hast gewonnnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Stein")
                             {
-
-                                Console.WriteLine("Computer hat Echse\n"); 
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Papier")
                             {
-                                Console.WriteLine("Computer hat Echse\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Echse")
                             {
-                                Console.WriteLine("Computer hat Echse\n");
-                                Console.WriteLine("Unentschieden, nochmal\n");
+                                Draw(computerChoise);
                                 tryAgain = true;
                             }
                             else if (userChoice == "Spock")
                             {
-                                Console.WriteLine("Computer hat Echse\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else
                             {
-                                Console.WriteLine("Ungültige Antwort\n");
+                                FalseAnswer();
                             }
                             break;
                         case 5:
                             computerChoise = "Spock";
                             if (userChoice == "Schere")
                             {
-                                Console.WriteLine("Computer hat Spock\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Stein")
                             {
-                                Console.WriteLine("Computer hat Spock\n");
-                                Console.WriteLine("Du hast verloren :(");
+                                YouLost(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Papier")
                             {
-                                Console.WriteLine("Computer hat Spock\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Echse")
                             {
-                                Console.WriteLine("Computer hat Spock\n");
-                                Console.WriteLine("Du hast gewonnen!!");
+                                YouWon(computerChoise);
                                 tryAgain = false;
                             }
                             else if (userChoice == "Spock")
                             {
-                                Console.WriteLine("Computer hat Spock\n");
-                                Console.WriteLine("Unentschieden, nochmal\n");
+                                Draw(computerChoise);
                                 tryAgain = true;
                             }
                             else
                             {
-                                Console.WriteLine("Ungültige Antwort\n");
+                                FalseAnswer();
                             }
                             break;
                         default:
@@ -226,36 +200,55 @@ namespace GameSSPES
                     }
 
                 }
-                    bool wrongAnswer = true;
+                bool wrongAnswer = true;
 
-                    while (wrongAnswer)
+                while (wrongAnswer)
+                {
+
+                    Console.WriteLine();
+                    Console.WriteLine("Möchtest du wieder spielen? Ja oder Nein");
+                    string answer = Console.ReadLine();
+                    if (answer == "Ja")
                     {
-
                         Console.WriteLine();
-                        Console.WriteLine("Möchtest du wieder spielen? Ja oder Nein");
-                        string answer = Console.ReadLine();
-                        if (answer == "Ja")
-                        {
-                            Console.WriteLine();
-                            playAgain = true;
-                            wrongAnswer = false;
-                            tryAgain = true;
-                        }
-                        else if (answer == "Nein")
-                        {
-                            playAgain = false;
-                            wrongAnswer = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Ungültige Antwort");
-                            wrongAnswer = true;
-                        }
+                        playAgain = true;
+                        wrongAnswer = false;
+                        tryAgain = true;
                     }
+                    else if (answer == "Nein")
+                    {
+                        playAgain = false;
+                        wrongAnswer = false;
+                    }
+                    else
+                    {
+                        FalseAnswer();
+                        wrongAnswer = true;
+                    }
+                }
             }
             Console.ReadLine();
 
         }
 
+        private static void YouWon(string ComputerChoise)
+        {
+            Console.WriteLine("Computer wählt" + " " + ComputerChoise + " \n");
+            Console.WriteLine("Du hast gewonnen!!");
+        }
+        private static void YouLost(string ComputerChoise)
+        {
+            Console.WriteLine("Computer wählt" + " " + ComputerChoise + "\n");
+            Console.WriteLine("Du hast verloren :(");
+        }
+        private static void Draw(string ComputerChoise)
+        {
+            Console.WriteLine("Computer wählt" + " " + ComputerChoise + "\n");
+            Console.WriteLine("Unentschieden, nochmal\n");
+        }
+        private static void FalseAnswer()
+        {
+            Console.WriteLine("Ungültige Antwort\n");
+        }
     }
 }
