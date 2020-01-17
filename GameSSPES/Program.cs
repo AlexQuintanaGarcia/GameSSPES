@@ -16,7 +16,7 @@ namespace GameSSPES
             Console.WriteLine();
 
             string computerChoise;
-            int randomInt;
+            int randomNum;
             bool playAgain = true;
             bool tryAgain = true;
 
@@ -28,10 +28,10 @@ namespace GameSSPES
                     string userChoice = Console.ReadLine();
                     Console.WriteLine();
 
-                    Random rnd = new Random();
-                    randomInt = rnd.Next(1,6);
+                    Random number = new Random();
+                    randomNum = number.Next(1,6);
 
-                    switch (randomInt)
+                    switch (randomNum)
                     {
                         case 1:
                             computerChoise = "Schere";
