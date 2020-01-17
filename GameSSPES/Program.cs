@@ -233,17 +233,17 @@ namespace GameSSPES
 
         private static void YouWon(string ComputerChoise)
         {
-            Console.WriteLine("Computer wählt" + " " + ComputerChoise + " \n");
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast gewonnen!!");
         }
         private static void YouLost(string ComputerChoise)
         {
-            Console.WriteLine("Computer wählt" + " " + ComputerChoise + "\n");
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast verloren :(");
         }
         private static void Draw(string ComputerChoise)
         {
-            Console.WriteLine("Computer wählt" + " " + ComputerChoise + "\n");
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Unentschieden, nochmal\n");
         }
         private static void FalseAnswer()
