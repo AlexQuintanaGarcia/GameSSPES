@@ -37,28 +37,23 @@ namespace GameSSPES
                             computerChoise = "Schere";
                             if (userChoice == "Schere")
                             {
-                                Draw(computerChoise);
-                                tryAgain = true;
+                                tryAgain = Draw(computerChoise);
                             }
                             else if (userChoice == "Stein")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Papier")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Echse")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Spock")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else
                             {
@@ -70,28 +65,23 @@ namespace GameSSPES
                             computerChoise = "Stein";
                             if (userChoice == "Schere")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Stein")
                             {
-                                Draw(computerChoise);
-                                tryAgain = true;
+                                tryAgain = Draw(computerChoise);
                             }
                             else if (userChoice == "Papier")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Echse")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Spock")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else
                             {
@@ -102,28 +92,23 @@ namespace GameSSPES
                             computerChoise = "Papier";
                             if (userChoice == "Schere")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Stein")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Papier")
                             {
-                                Draw(computerChoise);
-                                tryAgain = true;
+                                tryAgain = Draw(computerChoise);
                             }
                             else if (userChoice == "Echse")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Spock")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else
                             {
@@ -134,28 +119,23 @@ namespace GameSSPES
                             computerChoise = "Echse";
                             if (userChoice == "Schere")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Stein")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Papier")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Echse")
                             {
-                                Draw(computerChoise);
-                                tryAgain = true;
+                                tryAgain = Draw(computerChoise);
                             }
                             else if (userChoice == "Spock")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else
                             {
@@ -166,28 +146,23 @@ namespace GameSSPES
                             computerChoise = "Spock";
                             if (userChoice == "Schere")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Stein")
                             {
-                                YouLost(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouLost(computerChoise);
                             }
                             else if (userChoice == "Papier")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Echse")
                             {
-                                YouWon(computerChoise);
-                                tryAgain = false;
+                                tryAgain = YouWon(computerChoise);
                             }
                             else if (userChoice == "Spock")
                             {
-                                Draw(computerChoise);
-                                tryAgain = true;
+                                tryAgain = Draw(computerChoise);
                             }
                             else
                             {
@@ -231,20 +206,23 @@ namespace GameSSPES
 
         }
 
-        private static void YouWon(string ComputerChoise)
+        private static bool YouWon(string ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast gewonnen!!");
+            return false;
         }
-        private static void YouLost(string ComputerChoise)
+        private static bool YouLost(string ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast verloren :(");
+            return false;
         }
-        private static void Draw(string ComputerChoise)
+        private static bool Draw(string ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Unentschieden, nochmal\n");
+            return true;
         }
         private static void FalseAnswer()
         {
