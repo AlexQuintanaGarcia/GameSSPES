@@ -51,14 +51,14 @@ namespace GameSSPES
             Console.WriteLine();
 
             Action computerChoice;
-            bool tryAgain = true;
+            bool playAgain = true;
 
-                while (tryAgain)
+            while (playAgain)
             {
                 int userInput = getUserChoice(userName);
                 getComputerChoice(out computerChoice);
 
-                tryAgain = getWinner(rules, computerChoice, userInput);
+                playAgain = getWinner(rules, computerChoice, userInput);
             }
         }
 
@@ -130,23 +130,20 @@ namespace GameSSPES
             return getUserChoice(userName);
         }
 
-        private static bool YouWon(Action ComputerChoise)
+        private static void YouWon(Action ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast gewonnen!!\n");
-            return false;
         }
-        private static bool YouLost(Action ComputerChoise)
+        private static void YouLost(Action ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Du hast verloren :(\n");
-            return false;
         }
-        private static bool Draw(Action ComputerChoise)
+        private static void Draw(Action ComputerChoise)
         {
             Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
             Console.WriteLine("Unentschieden, nochmal\n");
-            return true;
         }
         private static void FalseAnswer()
         {
