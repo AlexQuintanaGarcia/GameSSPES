@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace GameSSPES.WebApi
 {
@@ -16,7 +13,7 @@ namespace GameSSPES.WebApi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}/{name}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
