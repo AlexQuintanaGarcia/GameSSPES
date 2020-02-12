@@ -1,45 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace GameSSPES
 {
     class Program
     {
-        private static string getActionCombination(Action action1, Action action2)
+        static HttpClient client = new HttpClient();
+        static void Main()
         {
-            return action1.ToString() + action2.ToString();
+            RunAsync().GetAwaiter().GetResult();
         }
-
-        static void Main(string[] args)
+        static async Task RunAsync()
         {
 
-            var rules = new Dictionary<string, Result> {
-                { getActionCombination(Action.Schere, Action.Schere), Result.Draw },
-                { getActionCombination(Action.Schere, Action.Stein), Result.Lost },
-                { getActionCombination(Action.Schere, Action.Papier), Result.Won },
-                { getActionCombination(Action.Schere, Action.Echse), Result.Won },
-                { getActionCombination(Action.Schere, Action.Spock), Result.Lost },
-                { getActionCombination(Action.Stein, Action.Schere), Result.Won },
-                { getActionCombination(Action.Stein, Action.Stein), Result.Draw },
-                { getActionCombination(Action.Stein, Action.Papier), Result.Lost },
-                { getActionCombination(Action.Stein, Action.Echse), Result.Won },
-                { getActionCombination(Action.Stein, Action.Spock), Result.Lost },
-                { getActionCombination(Action.Papier, Action.Schere), Result.Lost },
-                { getActionCombination(Action.Papier, Action.Stein), Result.Won },
-                { getActionCombination(Action.Papier, Action.Papier), Result.Draw },
-                { getActionCombination(Action.Papier, Action.Echse), Result.Lost },
-                { getActionCombination(Action.Papier, Action.Spock), Result.Won },
-                { getActionCombination(Action.Echse, Action.Schere), Result.Lost },
-                { getActionCombination(Action.Echse, Action.Stein), Result.Lost },
-                { getActionCombination(Action.Echse, Action.Papier), Result.Won },
-                { getActionCombination(Action.Echse, Action.Echse), Result.Draw },
-                { getActionCombination(Action.Echse, Action.Spock), Result.Won },
-                { getActionCombination(Action.Spock, Action.Schere), Result.Won },
-                { getActionCombination(Action.Spock, Action.Stein), Result.Won },
-                { getActionCombination(Action.Spock, Action.Papier), Result.Lost },
-                { getActionCombination(Action.Spock, Action.Echse), Result.Lost },
-                { getActionCombination(Action.Spock, Action.Spock), Result.Draw },
-            };
+            client.BaseAddress = new Uri("https://localhost:44376/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
             Console.WriteLine("Wilkommen bei Schere, Stein, Papier, Echse, Spock\n");
 
@@ -48,65 +27,29 @@ namespace GameSSPES
             Console.Write("Bitte schreibe deinen Name: ");
 
             string userName = Console.ReadLine();
+            if (userName == "")
+            {
+                userName = "Spieler";
+            }
             Console.WriteLine();
 
-            Action computerChoice;
             bool playAgain = true;
 
             while (playAgain)
             {
                 int userInput = getUserChoice(userName);
-                getComputerChoice(out computerChoice);
-
-                playAgain = getWinner(rules, computerChoice, userInput);
-            }
-        }
-
-        private static bool getWinner(Dictionary<string, Result> rules, Action computerChoice, int userInput)
-        {
-            bool tryAgain;
-            if (userInput != 0)
-            {
-                tryAgain = true;
-
-                Action userChoice = (Action)userInput;
-
-                Console.WriteLine("\nDu whälst " + userChoice);
-                Console.WriteLine();
-
-
-                switch (rules[getActionCombination(userChoice, computerChoice)])
+                if (userInput != 0)
                 {
-                    case Result.Draw:
-                        Draw(computerChoice);
-                        break;
-                    case Result.Lost:
-                        YouLost(computerChoice);
-                        break;
-                    case Result.Won:
-                        YouWon(computerChoice);
-                        break;
-                    default:
-                        throw new Exception("Das hätte nicht passieren sollen!");
+                    playAgain = true;
+                    Game winner = await GetWinner(userInput, userName);
+                    Winner(winner);
+                }
+                else
+                {
+                    playAgain = false;
                 }
             }
-            else
-            {
-                tryAgain = false;
-            }
-
-            return tryAgain;
         }
-
-        private static void getComputerChoice(out Action computerChoice)
-        {
-            int randomNum;
-            Random number = new Random();
-            randomNum = number.Next(1, 6);
-
-            computerChoice = (Action)randomNum;
-        }
-
         private static int getUserChoice(string userName)
         {
             Console.WriteLine("{0}, bitte wähle zwischen:", userName);
@@ -128,6 +71,39 @@ namespace GameSSPES
 
             FalseAnswer();
             return getUserChoice(userName);
+        }
+        static async Task<Game> GetWinner(int userInput, string userName)
+        {
+            Game winner = null;
+            var response = await client.GetAsync("api/Game/" + userInput + "/" + userName);
+            if (response.IsSuccessStatusCode)
+            {
+                winner = await response.Content.ReadAsAsync<Game>();
+            }
+            return winner;
+        }
+        private static void Winner(Game winner)
+        {
+            Action userChoice = (Action)winner.userAction;
+            Action computerChoice = (Action)winner.computerAction;
+
+            Console.WriteLine("\n{0}, du wählst {1}", winner.userName, userChoice);
+            Console.WriteLine();
+
+            switch (winner.result)
+            {
+                case "Draw":
+                    Draw(computerChoice);
+                    break;
+                case "Lost":
+                    YouLost(computerChoice);
+                    break;
+                case "Won":
+                    YouWon(computerChoice);
+                    break;
+                default:
+                    throw new Exception("Das hätte nicht passieren sollen!");
+            }
         }
 
         private static void YouWon(Action ComputerChoise)
