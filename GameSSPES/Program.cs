@@ -106,19 +106,19 @@ namespace GameSSPES
             }
         }
 
-        private static void YouWon(Action ComputerChoise)
+        private static void YouWon(Action ComputerChoice)
         {
-            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoice);
             Console.WriteLine("Du hast gewonnen!!\n");
         }
-        private static void YouLost(Action ComputerChoise)
+        private static void YouLost(Action ComputerChoice)
         {
-            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoice);
             Console.WriteLine("Du hast verloren :(\n");
         }
-        private static void Draw(Action ComputerChoise)
+        private static void Draw(Action ComputerChoice)
         {
-            Console.WriteLine("Computer wählt {0} \n", ComputerChoise);
+            Console.WriteLine("Computer wählt {0} \n", ComputerChoice);
             Console.WriteLine("Unentschieden, nochmal\n");
         }
         private static void FalseAnswer()
