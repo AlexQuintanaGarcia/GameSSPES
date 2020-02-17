@@ -27,7 +27,7 @@ namespace GameSSPES
             Console.Write("Bitte schreibe deinen Name: ");
 
             string userName = Console.ReadLine();
-            if (userName == "")
+            if (String.IsNullOrEmpty(userName))
             {
                 userName = "Spieler";
             }
