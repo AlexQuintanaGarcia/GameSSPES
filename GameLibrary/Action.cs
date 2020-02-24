@@ -1,6 +1,8 @@
-﻿namespace GameSSPES
+﻿using System;
+
+namespace GameLibrary
 {
-    enum Action
+    public enum Action
     {
         Schere = 1,
         Stein,

@@ -1,37 +1,22 @@
-﻿using GameSSPES.WebApi.Models;
+﻿using GameSSPES.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using GameLibrary;
+using Action = GameLibrary.Action;
 
 namespace GameSSPES.WebApi.Controllers
 {
-    enum Result
-    {
-        Draw,
-        Won,
-        Lost,
-    }
-    enum Action
-    {
-        Schere = 1,
-        Stein,
-        Papier,
-        Echse,
-        Spock
-    }
 
     public class GameController : ApiController
     {
-        public IHttpActionResult GetWinner(int id, string name)
+        public IHttpActionResult GetWinner(Action choice, string name)
         {
-            Action userChoice = (Action)id;
             Random number = new Random();
-            int randomNum = number.Next(1, 6);
-            Action computerChoice = (Action)randomNum;
-            var winner = rules[ActionCombination(userChoice, computerChoice)];
-            string result = winner.ToString();
+            Action computerChoice = (Action) number.Next(1, 6);
+            Result winner = rules[ActionCombination(choice, computerChoice)];
 
-            var game = new Game { userName = name, userAction = id, computerAction = (int)computerChoice, result = result };
+            var game = new Game { userName = name, userAction = choice, computerAction = computerChoice, result = winner };
             return Ok(game);
         }
 

@@ -2,6 +2,8 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using GameLibrary;
+using Action = GameLibrary.Action;
 
 namespace GameSSPES
 {
@@ -37,7 +39,7 @@ namespace GameSSPES
 
             while (playAgain)
             {
-                int userInput = getUserChoice(userName);
+                Action userInput = (Action)getUserChoice(userName);
                 if (userInput != 0)
                 {
                     playAgain = true;
@@ -72,7 +74,7 @@ namespace GameSSPES
             FalseAnswer();
             return getUserChoice(userName);
         }
-        static async Task<Game> GetWinner(int userInput, string userName)
+        static async Task<Game> GetWinner(Action userInput, string userName)
         {
             Game winner = null;
             var response = await client.GetAsync("api/Game/" + userInput + "/" + userName);
@@ -84,22 +86,20 @@ namespace GameSSPES
         }
         private static void Winner(Game winner)
         {
-            Action userChoice = (Action)winner.userAction;
-            Action computerChoice = (Action)winner.computerAction;
 
-            Console.WriteLine("\n{0}, du wählst {1}", winner.userName, userChoice);
+            Console.WriteLine("\n{0}, du wählst {1}", winner.userName, winner.userAction);
             Console.WriteLine();
 
             switch (winner.result)
             {
-                case "Draw":
-                    Draw(computerChoice);
+                case Result.Draw:
+                    Draw(winner.computerAction);
                     break;
-                case "Lost":
-                    YouLost(computerChoice);
+                case Result.Lost:
+                    YouLost(winner.computerAction);
                     break;
-                case "Won":
-                    YouWon(computerChoice);
+                case Result.Won:
+                    YouWon(winner.computerAction);
                     break;
                 default:
                     throw new Exception("Das hätte nicht passieren sollen!");
@@ -123,7 +123,7 @@ namespace GameSSPES
         }
         private static void FalseAnswer()
         {
-            Console.WriteLine("\nUngültige Option\nbitte whäle eine Nummer von 1 bis 5 oder 0, um das Spiel zu beenden\n");
+            Console.WriteLine("\nUngültige Option\nbitte wähle eine Nummer von 1 bis 5 oder 0, um das Spiel zu beenden\n");
         }
     }
 }

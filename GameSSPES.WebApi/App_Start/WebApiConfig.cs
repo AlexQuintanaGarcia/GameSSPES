@@ -13,8 +13,7 @@ namespace GameSSPES.WebApi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}/{name}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{choice}/{name}"
             );
         }
     }
