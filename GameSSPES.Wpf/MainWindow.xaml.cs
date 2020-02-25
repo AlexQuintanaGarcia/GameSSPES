@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using GameLibrary;
 using Action = GameLibrary.Action;
 
@@ -47,7 +36,7 @@ namespace GameSSPES.Wpf
             }
             return winner;
         }
-        private static void Winner(Game winner, TextBlock userAction, TextBlock computerAction, TextBlock result)
+        private void Winner(Game winner)
         {
 
             userAction.Text = $"{winner.userName}, du wählst {winner.userAction}";
@@ -68,54 +57,40 @@ namespace GameSSPES.Wpf
                     throw new Exception("Das hätte nicht passieren sollen!");
             }
         }
-        private async void Stein_Click(object sender, RoutedEventArgs e)
-        {
-            string name = User();
-            Action userInput = (Action)2;
-            Game winner = await GetWinner(userInput, name);
-            Winner(winner, userAction, computerAction, result);
-        }
-
-        private async void Schere_Click(object sender, RoutedEventArgs e)
-        {
-            string name = User();
-            Action userInput = (Action)1;
-            Game winner = await GetWinner(userInput, name);
-            Winner(winner, userAction, computerAction, result);
-        }
-
-        private async void Papier_Click(object sender, RoutedEventArgs e)
-        {
-            string name = User();
-            Action userInput = (Action)3;
-            Game winner = await GetWinner(userInput, name);
-            Winner(winner, userAction, computerAction, result);
-        }
-
-        private async void Echse_Click(object sender, RoutedEventArgs e)
-        {
-            string name = User();
-            Action userInput = (Action)4;
-            Game winner = await GetWinner(userInput, name);
-            Winner(winner, userAction, computerAction, result);
-        }
-
-        private async void Spock_Click(object sender, RoutedEventArgs e)
-        {
-            string name = User();
-            Action userInput = (Action)5;
-            Game winner = await GetWinner(userInput, name);
-            Winner(winner, userAction, computerAction, result);
-        }
-        private string User()
+        private async void RunAsync(Action userInput)
         {
             string name = userName.Text;
             if (String.IsNullOrEmpty(name))
             {
                 name = "Spieler";
             }
-
-            return name;
+            Game winner = await GetWinner(userInput, name);
+            Winner(winner);
+        }
+        private void Schere_Click(object sender, RoutedEventArgs e)
+        {
+            Action userInput = Action.Schere;
+            RunAsync(userInput);
+        }
+        private void Stein_Click(object sender, RoutedEventArgs e)
+        {
+            Action userInput = Action.Stein;
+            RunAsync(userInput);
+        }
+        private void Papier_Click(object sender, RoutedEventArgs e)
+        {
+            Action userInput = Action.Papier;
+            RunAsync(userInput);
+        }
+        private void Echse_Click(object sender, RoutedEventArgs e)
+        {
+            Action userInput = Action.Echse;
+            RunAsync(userInput);
+        }
+        private void Spock_Click(object sender, RoutedEventArgs e)
+        {
+            Action userInput = Action.Spock;
+            RunAsync(userInput);
         }
     }
 }

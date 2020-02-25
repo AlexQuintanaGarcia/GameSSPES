@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         mc:Ignorable="d" FontFamily="Segoe UI " Background="#FFCCFDE5"
-        Title="Schere Stein Papier Echse Spock" Height="660" MaxWidth="800" FontSize="20">
+        Title="Schere Stein Papier Echse Spock" Height="630" MaxWidth="800" FontSize="20">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -81,7 +81,7 @@
             <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Wähle deinen Zug:" TextAlignment="Center"/>
 
             <!-- Row 1 -->
-            <Button x:Name="schere" Grid.Column="0" Grid.Row="1" Margin="50,10" Click="Schere_Click">
+            <Button x:Name="schere" Grid.Column="0" Grid.Row="1" Margin="50,5" Click="Schere_Click">
                 <Button.Background>
                     <ImageBrush/>
                 </Button.Background>
@@ -89,7 +89,7 @@
                     <Image MaxHeight="100" Source="Schere.png"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="stein" Grid.Column="1" Grid.Row="1" Margin="50,10" Click="Stein_Click">
+            <Button x:Name="stein" Grid.Column="1" Grid.Row="1" Margin="50,5" Click="Stein_Click">
                 <Button.Background>
                     <ImageBrush/>
                 </Button.Background>
@@ -99,7 +99,7 @@
             </Button>
 
             <!-- Row 2 -->
-            <Button x:Name="papier" Grid.Column="0" Grid.Row="2" Margin="170,10" Grid.ColumnSpan="2" Click="Papier_Click">
+            <Button x:Name="papier" Grid.Column="0" Grid.Row="2" Margin="170,0" Grid.ColumnSpan="2" Click="Papier_Click">
                 <Button.Background>
                     <ImageBrush/>
                 </Button.Background>
@@ -109,7 +109,7 @@
             </Button>
 
             <!-- Row 3 -->
-            <Button x:Name="echse" Grid.Column="0" Grid.Row="3" Margin="50,10" Click="Echse_Click">
+            <Button x:Name="echse" Grid.Column="0" Grid.Row="3" Margin="50,5" Click="Echse_Click">
                 <Button.Background>
                     <ImageBrush/>
                 </Button.Background>
@@ -117,7 +117,7 @@
                     <Image MaxHeight="100" Source="Echse.png" />
                 </StackPanel>
             </Button>
-            <Button x:Name="spock" Grid.Column="1" Grid.Row="3" Margin="50,10" Click="Spock_Click">
+            <Button x:Name="spock" Grid.Column="1" Grid.Row="3" Margin="50,5" Click="Spock_Click">
                 <Button.Background>
                     <ImageBrush/>
                 </Button.Background>
